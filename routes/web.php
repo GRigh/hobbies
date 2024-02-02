@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+// Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
+// Route::post('/product', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
+// Route::get('/product/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
+// Route::put('/product/{product}/update', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('product', ProductController::class)->except([
+    'show'
+]);
